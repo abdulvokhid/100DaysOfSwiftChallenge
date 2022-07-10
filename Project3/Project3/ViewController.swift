@@ -25,6 +25,7 @@ class ViewController: UITableViewController {
             if item.hasPrefix("nssl") {
                 //this is picture load
                 pictures.append(item)
+                pictures.sort() //challenge-2 show the image names in sorted order
             }
         }
         print(pictures)
@@ -46,6 +47,8 @@ class ViewController: UITableViewController {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             // 2: success! set its selectedImage property
             vc.selectedImage = pictures[indexPath.row]
+            vc.selectedPictureNumber = indexPath.row + 1
+            vc.totalPicture = pictures.count
             // 3: now push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
