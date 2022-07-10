@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         button2.setImage(UIImage(named: countries[1]), for: .normal)
         button3.setImage(UIImage(named: countries[2]), for: .normal)
         
-        let uppercasedCountries = countries[correctAnswer].uppercased() //Challenge-1 Try showing the player's score in the navigation bar, alongside the flag to guess
+        let uppercasedCountries = countries[correctAnswer].uppercased() // Try showing the player's score in the navigation bar, alongside the flag to guess
         title = "Score \(score) - Tap on \(uppercasedCountries)"
     }
 
@@ -51,30 +51,31 @@ class ViewController: UIViewController {
     @IBAction func buttonTapped(_ sender: UIButton) {
         var title: String
         
-        if  sender.tag == correctAnswer {
+        if sender.tag == correctAnswer {
             title = "Correct"
             score += 1
         } else {
-            title = "Wrong That's flag of \(countries[sender.tag].uppercased())" //Challenge-3 when someone chooses the wrong flag, tell them their mistake in your alert message - something like "Wrong! That's flah of ..."
+            title = "Wrong That's flag of \(countries[sender.tag].uppercased())" // when someone chooses the wrong flag, tell them their mistake in your alert message - something like "Wrong! That's flah of ..."
             score -= 1
         }
+        // Keep track of how many questions have been asked, and show one final alert controller after they have answered 10. This should show their final score.
+        askedQuestions += 1
         if askedQuestions < 10 {
-            let alertController = UIAlertController(title: title, message: "Your score is \(score)", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Continue", style: .default, handler: askQuestion))
-
-            present(alertController, animated: true)
+            let ac = UIAlertController(title: title, message: "Your score is \(score).", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Cantinue", style: .default, handler: askQuestion))
+            present(ac, animated: true)
         } else {
-            let finalAlertController = UIAlertController(title: "Game is Over!", message: "Your score is \(score)", preferredStyle: .alert)
-            finalAlertController.addAction(UIAlertAction(title: "Start new game!", style: .default, handler: startNewGame))
-            present(finalAlertController, animated: true)
+            let ac = UIAlertController(title: title, message: "Your final score is \(score).", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "Play again", style: .default, handler: startNewGame))
+            present(ac, animated: true)
         }
-       
-    }
-    func startNewGame(action: UIAlertAction) {
-        score = 0
-        askedQuestions = 0
-        
-        askQuestion()
+        // Start a new game
+        func startNewGame(action: UIAlertAction) {
+            score = 0
+            askedQuestions = 0
+                    
+            askQuestion()
+        }
     }
 }
 
