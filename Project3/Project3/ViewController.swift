@@ -15,6 +15,8 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        title = "Storm Viewer"
+        navigationController?.navigationBar.prefersLargeTitles = true
         let fm = FileManager.default
         let path = Bundle.main.resourcePath! //This is a data type that lets us work with the filesystem, and in our case we'll be using it to look for files.
         let items = try! fm.contentsOfDirectory(atPath: path)
