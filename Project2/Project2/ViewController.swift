@@ -45,6 +45,7 @@ class ViewController: UIViewController {
         
         let uppercasedCountries = countries[correctAnswer].uppercased() // Try showing the player's score in the navigation bar, alongside the flag to guess
         title = "Score \(score) - Tap on \(uppercasedCountries)"
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(showScore))
     }
 
     
@@ -77,5 +78,11 @@ class ViewController: UIViewController {
             askQuestion()
         }
     }
+    //Swift challenge-3 day-22 3.Go back to project 2 and add a bar button item that shows their score when tapped.
+//    @objc func showScore() {
+//        let scoreAlert = UIAlertController(title: "Score", message: nil, preferredStyle: .actionSheet)
+//        scoreAlert.addAction(UIAlertAction(title: "Your current score is \(score)", style: .default, handler: nil))
+//        present(scoreAlert, animated: true)
+//    }
 }
 
