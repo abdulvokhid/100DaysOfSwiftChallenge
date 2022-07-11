@@ -20,6 +20,8 @@ class DetailViewController: UIViewController {
         self.title = "Picture \(selectedPictureNumber!) of \(totalPictureNumber!)"
         navigationItem.largeTitleDisplayMode = .never //we dont wanna use large title in our detail screen
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(suggest))
+        
         if let imageToLoad = selectedImage {
             imageView.image = UIImage(named: imageToLoad)
         }
@@ -32,5 +34,12 @@ class DetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
+    }
+    
+    @objc func suggest() {
+        let shareLink = "Try it: https://github.com/Cellomaster87/Storm-Viewer"
+        let vc = UIActivityViewController(activityItems: [shareLink], applicationActivities: [])
+        vc.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(vc, animated: true)
     }
 }
