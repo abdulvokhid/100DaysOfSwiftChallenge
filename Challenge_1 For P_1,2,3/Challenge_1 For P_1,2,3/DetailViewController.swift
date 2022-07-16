@@ -10,11 +10,15 @@ import UIKit
 class DetailViewController: UIViewController {
 
     @IBOutlet var imageView: UIImageView!
+    var selectedFlag: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        self.title = "Flags"
+        if let imageToLoad = selectedFlag {
+            imageView.image = UIImage(named: imageToLoad)
+        }
     }
 
 }

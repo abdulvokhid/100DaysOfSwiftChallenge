@@ -11,6 +11,10 @@ class ViewController: UITableViewController {
     var flags = [String]()
 
     override func viewDidLoad() {
+        
+        title = "Flags"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
@@ -40,7 +44,15 @@ class ViewController: UITableViewController {
         return cell
     }
     
+    //MARK: - Show selected image in DetailViewController
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
+            vc.selectedFlag = flags[indexPath.row]
+            navigationController?.pushViewController(vc, animated: true)
+        }
+        
+    }
 
 }
 
