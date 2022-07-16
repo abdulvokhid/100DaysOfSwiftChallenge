@@ -22,12 +22,25 @@ class ViewController: UITableViewController {
         for item in items {
             if item.hasSuffix(".png"){
 //                flags.append(item)
-                print(item)
+                flags.append(item)
+                flags.sort()
             }
         }
-        //print(flags)
+        print(flags)
     }
-
+    
+    // MARK: - Shows the list of the flags in ViewController
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return flags.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Flags", for: indexPath)
+        cell.textLabel?.text = flags[indexPath.row]
+        return cell
+    }
+    
+    
 
 }
 
