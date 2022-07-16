@@ -15,7 +15,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Flags"
+        self.title = 
+        //function allows us to show our image in detailViewController
         if let imageToLoad = selectedFlag {
             imageView.image = UIImage(named: imageToLoad)
         }

@@ -8,8 +8,22 @@
 import UIKit
 
 class ViewController: UITableViewController {
+    
     var flags = [String]()
-
+    // adds imageView to our cell
+    let myFlags = [UIImage(named: "nigeria@3x"),
+                   UIImage(named: "spain@3x"),
+                   UIImage(named: "italy@3x"),
+                   UIImage(named: "germany@3x"),
+                   UIImage(named: "ireland@3x"),
+                   UIImage(named: "estonia@3x"),
+                   UIImage(named: "russia@3x"),
+                   UIImage(named: "poland@3x"),
+                   UIImage(named: "uk@3x"),
+                   UIImage(named: "us@3x"),
+                   UIImage(named: "france@3x"),
+                   UIImage(named: "monaco@3x")]
+    
     override func viewDidLoad() {
         
         title = "Flags"
@@ -27,7 +41,7 @@ class ViewController: UITableViewController {
             if item.hasSuffix(".png"){
 //                flags.append(item)
                 flags.append(item)
-                flags.sort()
+                //flags.sort()
             }
         }
         print(flags)
@@ -41,6 +55,7 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Flags", for: indexPath)
         cell.textLabel?.text = flags[indexPath.row]
+        cell.imageView?.image = myFlags[indexPath.row]
         return cell
     }
     
