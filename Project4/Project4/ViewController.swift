@@ -90,6 +90,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
+        //If users try to visit a URL that isn’t allowed, show an alert saying it’s blocked.
+        let ac = UIAlertController(title: "Page blocked!", message: nil, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(ac, animated: true)
+
         decisionHandler(.cancel)
     }
 }
