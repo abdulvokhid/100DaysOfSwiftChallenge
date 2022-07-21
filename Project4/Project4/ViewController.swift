@@ -26,6 +26,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
         
+        //Challenge-2 Try making two new toolbar items with the titles Back and Forward. You should make them use webView.goBack and webView.goForward.
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: webView, action: #selector(webView.goBack))
+        
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
@@ -43,9 +46,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
         
-        //Try making two new toolbar items with the titles Back and Forward. You should make them use webView.goBack and webView.goForward.
-        _ = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: webView, action: #selector(webView.goBack))
-        _ = UIBarButtonItem(image: UIImage(systemName: "chevron.forward"), style: .plain, target: webView, action: #selector(webView.goForward))
         
     }
 
@@ -94,11 +94,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 }
             }
         }
-        //If users try to visit a URL that isn’t allowed, show an alert saying it’s blocked.
-        let ac = UIAlertController(title: "Page blocked!", message: nil, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+        //Challenge-1 If users try to visit a URL that isn’t allowed, show an alert saying it’s blocked.
+        let ac = UIAlertController(title: "Warning", message: "Page blocked!", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
         present(ac, animated: true)
-
+        
         decisionHandler(.cancel)
     }
 }
